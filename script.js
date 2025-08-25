@@ -5,95 +5,80 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsContainer = document.getElementById('results-container');
 
     // ==================================================================
-    //  API REATIVADA!
+    //  MUDANÇA PRINCIPAL: AGORA APONTAMOS DIRETAMENTE PARA O MERCADO LIVRE
     // ==================================================================
-    // URL base da nossa API intermediária que busca no Mercado Livre
-    const API_BASE_URL = '/api/search?query=';
+    const API_MERCADO_LIVRE_URL = 'https://api.mercadolibre.com/sites/MLB/search?q=';
 
     /**
-     * Função para buscar produtos na API em tempo real.
-     * @param {string} query - O termo de busca.
-     * @returns {Promise<Array>} - Uma promessa que resolve para a lista de produtos.
+     * Função para buscar produtos DIRETAMENTE na API do Mercado Livre
      */
     const fetchProducts = async (query) => {
-        resultsContainer.innerHTML = '<p class="loading-message">Buscando peças de verdade...</p>';
+        resultsContainer.innerHTML = '<p class="loading-message">Buscando direto no Mercado Livre...</p>';
 
         try {
-            const response = await fetch(`${API_BASE_URL}${encodeURIComponent(query)}`);
+            // A chamada agora é para a URL completa do Mercado Livre
+            const response = await fetch(`${API_MERCADO_LIVRE_URL}${encodeURIComponent(query)}`);
+            
             if (!response.ok) {
-                throw new Error('A resposta da rede não foi bem-sucedida.');
+                // Se a resposta não for OK, pode ser um erro de rede ou um bloqueio CORS
+                throw new Error('A resposta da rede não foi bem-sucedida. Verifique a consola por erros de CORS.');
             }
             const data = await response.json();
-            console.log('Dados recebidos da API:', data.results); // Ótimo para depurar!
+            console.log('Dados recebidos da API:', data.results);
             return data.results;
         } catch (error) {
             console.error('Erro ao buscar produtos:', error);
-            resultsContainer.innerHTML = '<p class="error-message">Desculpe, algo deu errado na busca. Tente novamente.</p>';
+            // Mensagem de erro mais específica para ajudar a depurar o CORS
+            resultsContainer.innerHTML = `<p class="error-message">
+                Desculpe, algo deu errado na busca. <br>
+                Abra a consola (F12) e verifique se há um erro relacionado a 'CORS'.
+            </p>`;
             return [];
         }
     };
 
-    // --- A função de busca local (searchLocalProducts) foi removida, pois não é mais necessária ---
-
     /**
-     * Função para renderizar os produtos na tela.
-     * Ela agora receberá dados reais, incluindo o `permalink` funcional.
+     * Função para renderizar os produtos na tela (sem alterações)
      */
     const renderProducts = (products) => {
         resultsContainer.innerHTML = ''; 
-
         if (products.length === 0) {
-            resultsContainer.innerHTML = '<p class="no-results">Nenhum resultado encontrado. Tente uma busca diferente.</p>';
+            resultsContainer.innerHTML = '<p class="no-results">Nenhum resultado encontrado.</p>';
             return;
         }
-
         products.forEach(product => {
             const productCard = document.createElement('div');
             productCard.classList.add('product-card');
-
             let codigoPeca = 'N/D';
-            let aplicacao = 'N/D';
-            
-            // A API real pode não ter o atributo 'PART_NUMBER', então verificamos se 'attributes' existe.
             if (product.attributes) {
                 const partNumberAttribute = product.attributes.find(attr => attr.id === 'PART_NUMBER' || attr.id === 'MPN');
                 if (partNumberAttribute) {
                     codigoPeca = partNumberAttribute.value_name;
                 }
             }
-
-            // O atributo de aplicação é raro, então o deixamos como N/D na maioria dos casos.
-            
             const highResImage = product.thumbnail.replace('-I.jpg', '-O.jpg');
-
-            // AGORA o product.permalink terá o link real do Mercado Livre!
             productCard.innerHTML = `
                 <img src="${highResImage}" alt="${product.title}" class="product-image" onerror="this.onerror=null;this.src='${product.thumbnail}';">
                 <div class="product-info">
                     <p class="product-code">Cód. ${codigoPeca}</p>
                     <h3 class="product-title">${product.title}</h3>
-                    <p class="product-application"><b>Aplicação:</b><br>${aplicacao}</p>
+                    <p class="product-application"><b>Aplicação:</b><br>N/D</p>
                     <a href="${product.permalink}" target="_blank" class="product-link">PARA VER O PREÇO</a>
                 </div>
             `;
-            
             resultsContainer.appendChild(productCard);
         });
     };
 
-    // Adiciona um "ouvinte" ao formulário, agora usando a função da API
+    // Event listener do formulário (sem alterações na sua lógica principal)
     searchForm.addEventListener('submit', async (e) => {
         e.preventDefault(); 
         const query = searchInput.value.trim();
         if (query) {
-            // Chamando a função assíncrona que busca na internet
             const products = await fetchProducts(query);
             renderProducts(products);
         } else {
             resultsContainer.innerHTML = '<p class="no-results">Por favor, digite algo para buscar.</p>';
         }
     });
-
-    // --- A linha que mostrava todos os produtos ao carregar foi removida, 
-    // pois só faz sentido com a base de dados local. ---
 });
