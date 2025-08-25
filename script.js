@@ -4,10 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const resultsContainer = document.getElementById('results-container');
 
-    // --- LÓGICA DA API DESATIVADA TEMPORARIAMENTE ---
-    // const API_BASE_URL = '/api/search?query=';
-    // const fetchProducts = async (query) => { ... };
-
     /**
      * Função para buscar produtos na nossa base de dados fictícia (database.js)
      * @param {string} query - O termo que o utilizador digitou para buscar.
@@ -16,9 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchLocalProducts = (query) => {
         const lowerCaseQuery = query.toLowerCase();
 
-        // Filtra o array 'produtosFicticios' (que vem do database.js)
         const resultados = produtosFicticios.filter(product => {
-            // Verifica se o título ou o código da peça contém o texto da busca
             const titulo = product.title.toLowerCase();
             const codigo = product.attributes.find(attr => attr.id === 'PART_NUMBER')?.value_name.toLowerCase() || '';
 
@@ -28,7 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return resultados;
     };
 
-    // Função para renderizar os produtos na tela (esta continua igual)
+    /**
+     * Função para renderizar os produtos na tela
+     * COM A LÓGICA PARA BUSCAR IMAGENS EM ALTA RESOLUÇÃO
+     */
     const renderProducts = (products) => {
         resultsContainer.innerHTML = ''; 
 
@@ -54,8 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 aplicacao = applicationAttribute.value_name;
             }
 
+            // --- LÓGICA PARA IMAGEM EM ALTA RESOLUÇÃO ---
+            // Troca o final do URL da imagem para tentar obter a versão de alta qualidade.
+            const highResImage = product.thumbnail.replace('-I.jpg', '-O.jpg');
+
             productCard.innerHTML = `
-                <img src="${product.thumbnail}" alt="${product.title}" class="product-image">
+                <img src="${highResImage}" alt="${product.title}" class="product-image" onerror="this.onerror=null;this.src='${product.thumbnail}';">
                 <div class="product-info">
                     <p class="product-code">Cód. ${codigoPeca}</p>
                     <h3 class="product-title">${product.title}</h3>
@@ -74,11 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const query = searchInput.value.trim();
         if (query) {
-            // Agora chamamos a nossa função de busca local
             const products = searchLocalProducts(query);
-            renderProducts(products); // Renderizamos o resultado
+            renderProducts(products);
         } else {
-            // Se a busca for vazia, mostra todos os produtos
             renderProducts(produtosFicticios);
         }
     });

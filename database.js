@@ -1,39 +1,63 @@
-// Nossa base de dados fictícia de produtos
+// Nossa base de dados fictícia de produtos (com URLs padrão do Mercado Livre)
 const produtosFicticios = [
   // --- 5 PRODUTOS ORIGINAIS ---
   {
     id: 'MLB001',
     title: 'Filtro de Óleo Lubrificante Tecfil PSL55 Para Fiat Palio',
-    thumbnail: 'https://http2.mlstatic.com/D_NQ_NP_775615-MLB48812316473_012022-W.jpg',
+    thumbnail: 'https://http2.mlstatic.com/D_NQ_NP_775615-MLB48812316473_012022-I.jpg',
     permalink: '#',
     attributes: [ { id: 'PART_NUMBER', value_name: 'PSL55' }, { id: 'APPLICATIONS', value_name: 'FIAT - PALIO - UNO - SIENA' } ]
   },
   {
     id: 'MLB002',
     title: 'Elemento Filtrante De Ar Linha Pesada - Tecfil AP4650',
-    thumbnail: 'https://http2.mlstatic.com/D_NQ_NP_918541-MLB46975217436_082021-W.jpg',
+    thumbnail: 'https://http2.mlstatic.com/D_NQ_NP_918541-MLB46975217436_082021-I.jpg',
     permalink: '#',
     attributes: [ { id: 'PART_NUMBER', value_name: 'AP4650' }, { id: 'APPLICATIONS', value_name: 'FORD - MERCEDES-BENZ - FIAT - SCANIA' } ]
   },
   {
     id: 'MLB003',
     title: 'Vela de Ignição NGK BKR6E-D Para Gol G5 / Fox 1.0',
-    thumbnail: 'https://http2.mlstatic.com/D_NQ_NP_994119-MLB51421035549_092022-W.jpg',
+    thumbnail: 'https://http2.mlstatic.com/D_NQ_NP_994119-MLB51421035549_092022-I.jpg',
     permalink: '#',
     attributes: [ { id: 'PART_NUMBER', value_name: 'BKR6E-D' }, { id: 'APPLICATIONS', value_name: 'VW - GOL - FOX - VOYAGE' } ]
   },
   {
     id: 'MLB004',
     title: 'Kit Correia Dentada e Tensor Dayco KTB253 Fiesta Ka',
-    thumbnail: 'https://http2.mlstatic.com/D_NQ_NP_632617-MLB73366395593_122023-W.jpg',
+    thumbnail: 'https://http2.mlstatic.com/D_NQ_NP_632617-MLB73366395593_122023-I.jpg',
     permalink: '#',
     attributes: [ { id: 'PART_NUMBER', value_name: 'KTB253' }, { id: 'APPLICATIONS', value_name: 'FORD - FIESTA - KA - ECOSPORT' } ]
   },
   {
     id: 'MLB005',
     title: 'Amortecedor Dianteiro Cofap GP32992M Corsa Classic',
-    thumbnail: 'https://http2.mlstatic.com/D_NQ_NP_832101-MLB48057201728_102021-W.jpg',
+    thumbnail: 'https://http2.mlstatic.com/D_NQ_NP_832101-MLB48057201728_102021-I.jpg',
     permalink: '#',
+    attributes: [ { id: 'PART_NUMBER', value_name: 'GP32992M' }, { id: 'APPLICATIONS', value_name: 'CHEVROLET - CORSA - CELTA - PRISMA' } ]
+  },
+  {
+    id: 'MLB006',
+    title: 'Pastilha de Freio Cobreq N-523 para Honda Civic',
+    thumbnail: 'https://http2.mlstatic.com/D_NQ_NP_676759-MLB50186105392_062022-I.jpg',
+    permalink: '#',
+    attributes: [ { id: 'PART_NUMBER', value_name: 'N-523' }, { id: 'APPLICATIONS', value_name: 'HONDA - CIVIC - FIT - CITY' } ]
+  },
+  {
+    id: 'MLB007',
+    title: 'Bomba D\'água Urba UB0630 para VW Gol 1.6 AP',
+    thumbnail: 'https://http2.mlstatic.com/D_NQ_NP_998782-MLB47985458622_102021-I.jpg',
+    permalink: '#',
+    attributes: [ { id: 'PART_NUMBER', value_name: 'UB0630' }, { id: 'APPLICATIONS', value_name: 'VW - GOL - SAVEIRO - PARATI' } ]
+  },
+  {
+    id: 'MLB008',
+    title: 'Kit Embreagem Luk 620302800 para Chevrolet Onix',
+    thumbnail: 'https://http2.mlstatic.com/D_NQ_NP_675877-MLB53331668037_012023-I.jpg',
+    permalink: '#',
+    attributes: [ { id: 'PART_NUMBER', value_name: '620302800' }, { id: 'APPLICATIONS', value_name: 'CHEVROLET - ONIX - PRISMA - COBALT' } ]
+  },
+  // ... (a lista continua com todos os 55 produtos, usando links do Mercado Livre)
     attributes: [ { id: 'PART_NUMBER', value_name: 'GP32992M' }, { id: 'APPLICATIONS', value_name: 'CHEVROLET - CORSA - CELTA - PRISMA' } ]
   },
   // --- 50 NOVOS PRODUTOS GERADOS AUTOMATICAMENTE ---
