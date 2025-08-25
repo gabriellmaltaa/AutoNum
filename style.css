@@ -554,3 +554,81 @@ footer {
 .checkout-btn:hover {
     background: var(--dark-blue);
 }
+/* ---- ESTILOS PARA A NOTIFICAÇÃO DE ADICIONAR AO CARRINHO ---- */
+.add-to-cart-notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745; /* Cor verde de sucesso */
+    color: var(--white);
+    padding: 15px 30px;
+    border-radius: 8px;
+    z-index: 3000;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    transform: translateX(-50%) translateY(-20px); /* Começa um pouco acima */
+}
+
+.add-to-cart-notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+#notification-message {
+    font-weight: bold;
+}
+/* ---- ESTILOS PARA CONTROLE DE QUANTIDADE NO CARRINHO ---- */
+.cart-item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.cart-item-details h4 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+}
+
+.cart-item-price {
+    font-weight: bold;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 15px; /* Espaço entre os detalhes e a quantidade */
+}
+
+.quantity-change {
+    background-color: #e9ecef;
+    border: 1px solid var(--border-color);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: background-color 0.2s;
+}
+
+.quantity-change:hover {
+    background-color: #dee2e6;
+}
+
+.cart-item-quantity span {
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+
+.cart-item-remove {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 1.5rem;
+    margin-left: 15px;
+}
