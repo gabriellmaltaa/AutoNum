@@ -1,9 +1,12 @@
-/* Configurações Globais */
+/* Configurações Globais e Nova Paleta de Cores */
 :root {
-    --nike-black: #111;
-    --nike-gray: #757575;
-    --nike-light-gray: #f5f5f5;
-    --nike-green: #3ad39f;
+    --primary-blue: #0d47a1;
+    --dark-blue: #002171;
+    --accent-yellow: #ffc107;
+    --text-dark: #212121;
+    --text-light: #616161;
+    --background-light: #f5f7fa;
+    --border-color: #e0e0e0;
 }
 
 * {
@@ -13,226 +16,250 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     background-color: #fff;
-    color: var(--nike-black);
+    color: var(--text-dark);
 }
 
 .container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
 /* Cabeçalho */
-.top-bar {
-    background-color: var(--nike-light-gray);
-    padding: 8px 0;
-    text-align: right;
-}
-.top-bar a {
-    font-size: 0.75rem;
-    margin-left: 15px;
-    color: var(--nike-gray);
-}
 .main-nav {
     padding: 15px 0;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid var(--border-color);
+    background-color: #fff;
 }
 .main-nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.logo img {
-    height: 30px;
+.logo {
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+.logo strong {
+    font-weight: 700;
+    color: var(--primary-blue);
 }
 .nav-menu {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 30px;
 }
 .nav-menu a {
+    text-decoration: none;
+    color: var(--text-dark);
     font-weight: 500;
-    padding-bottom: 25px;
-    border-bottom: 2px solid transparent;
+    padding-bottom: 22px;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s;
 }
-.nav-menu a.active, .nav-menu a:hover {
-    border-bottom: 2px solid var(--nike-black);
+.nav-menu a:hover {
+    border-bottom: 3px solid var(--primary-blue);
 }
 .nav-icons {
     display: flex;
-    align-items: center;
     gap: 20px;
+    align-items: center;
 }
-.search-box {
-    position: relative;
+.nav-icons a {
+    text-decoration: none;
+    color: var(--text-light);
 }
-.search-box input {
-    background-color: var(--nike-light-gray);
-    border: none;
-    border-radius: 20px;
-    padding: 8px 15px 8px 35px;
-    outline: none;
-}
-.search-box i {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--nike-gray);
+.nav-icons i {
+    margin-right: 5px;
 }
 
-/* Conteúdo da Página */
+/* Página Inicial - Hero Section */
+.hero-section {
+    background-color: var(--background-light);
+    padding: 80px 0;
+    text-align: center;
+}
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+.hero-section p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 40px;
+}
+.search-box-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    padding: 20px;
+}
+.search-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+.tab-button {
+    padding: 15px 25px;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--text-light);
+    border-bottom: 3px solid transparent;
+}
+.tab-button.active {
+    color: var(--primary-blue);
+    border-bottom-color: var(--primary-blue);
+}
+.search-form {
+    display: flex;
+    gap: 15px;
+    padding: 25px 0 10px 0;
+}
+.search-form select, .search-form input {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.search-submit-btn {
+    padding: 15px 30px;
+    border: none;
+    background-color: var(--accent-yellow);
+    color: var(--text-dark);
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+.search-submit-btn:hover {
+    background-color: #ffca28;
+}
+
+/* Página de Peças (Resultados) */
 .page-content {
     display: flex;
     gap: 40px;
     margin-top: 30px;
 }
-
-/* Filtros */
 .filters {
     width: 250px;
     flex-shrink: 0;
 }
 .filter-group {
-    padding: 20px 0;
-    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
 }
 .filter-group h4 {
-    display: flex;
-    justify-content: space-between;
-    font-weight: 500;
     margin-bottom: 15px;
-    cursor: pointer;
 }
-.size-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+.filter-group ul {
+    list-style: none;
+}
+.filter-group ul li {
+    margin-bottom: 10px;
+}
+.filter-group label {
+    display: flex;
+    align-items: center;
     gap: 8px;
 }
-.size-grid button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-}
-.size-grid button:hover {
-    border-color: var(--nike-black);
-}
-.size-grid button.active {
-    background-color: var(--nike-black);
-    color: #fff;
-    border-color: var(--nike-black);
-}
-
-
-/* Seção dos Produtos */
 .products-section {
     flex-grow: 1;
 }
-.products-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
-}
 .breadcrumbs {
-    color: var(--nike-gray);
+    color: var(--text-light);
     font-size: 0.9rem;
+    margin-bottom: 5px;
 }
 .products-header h1 {
     font-size: 1.8rem;
     font-weight: 600;
+    margin-bottom: 20px;
 }
-.sorting select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-
-/* Grade de Produtos */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
 }
+
+/* Card de Peça */
 .product-card {
-    position: relative;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
 }
 .product-card img {
     width: 100%;
-    background-color: var(--nike-light-gray);
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-.wishlist-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
     background-color: #fff;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
 }
-.product-label {
-    color: orange;
-    font-weight: 500;
+.product-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.part-number {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    background-color: var(--background-light);
+    padding: 3px 6px;
+    border-radius: 4px;
+    align-self: flex-start;
 }
 .product-name {
-    font-weight: 500;
-    margin: 5px 0;
-}
-.product-category {
-    color: var(--nike-gray);
-    margin-bottom: 10px;
-}
-.product-price .current-price {
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-right: 8px;
+    margin: 10px 0 5px 0;
 }
-.product-price .original-price {
-    text-decoration: line-through;
-    color: var(--nike-gray);
-    margin-right: 8px;
+.product-brand {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
 }
-.product-price .discount {
-    color: var(--nike-green);
+.compatibility-check {
+    color: #2e7d32;
+    font-size: 0.9rem;
     font-weight: 500;
+    margin-bottom: 15px;
 }
-.product-rating {
-    margin-top: 10px;
-    color: var(--nike-gray);
+.product-price {
+    margin-top: auto;
+    margin-bottom: 15px;
 }
-.product-rating .fa-star {
-    color: #fdd835;
+.current-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-blue);
 }
-
-/* Responsividade Básica */
-@media (max-width: 1024px) {
-    .filters {
-        display: none; /* Em uma aplicação real, seria um botão para abrir */
-    }
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.add-to-cart-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: var(--primary-blue);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
-@media (max-width: 768px) {
-    .nav-menu {
-        display: none; /* Menu vira um ícone "hambúrguer" */
-    }
-    .product-grid {
-        grid-template-columns: 1fr;
-    }
+.add-to-cart-btn:hover {
+    background-color: var(--dark-blue);
 }

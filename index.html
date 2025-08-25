@@ -3,75 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produtos Nike com Desconto</title>
+    <title>AutoNum - Encontre a Peça Certa</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
 
     <header>
-        <div class="top-bar">
-            <div class="container">
-                <a href="#">Junte-se a nós</a>
-                <a href="#">Entrar</a>
-            </div>
-        </div>
         <nav class="main-nav">
             <div class="container">
-                <a href="ofertas.html" class="logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike Logo">
-                </a>
+                <a href="index.html" class="logo">Auto<strong>Num</strong></a>
                 <ul class="nav-menu">
-                    <li><a href="ofertas.html" class="active">Ofertas</a></li>
-                    <li><a href="lancamentos.html">Lançamentos</a></li>
-                    <li><a href="masculino.html">Masculino</a></li>
-                    <li><a href="feminino.html">Feminino</a></li>
-                    <li><a href="infantil.html">Infantil</a></li>
+                    <li><a href="#">Peças de Carro</a></li>
+                    <li><a href="#">Peças de Moto</a></li>
+                    <li><a href="#">Óleos e Fluidos</a></li>
+                    <li><a href="#">Ofertas</a></li>
                 </ul>
                 <div class="nav-icons">
-                    <div class="search-box">
-                        <input type="search" placeholder="Buscar">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                    <a href="#"><i class="fa-regular fa-heart"></i></a>
-                    <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
+                    <a href="#"><i class="fa-regular fa-user"></i> Minha Conta</a>
+                    <a href="#"><i class="fa-solid fa-bag-shopping"></i> Carrinho</a>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main class="container page-content">
-        <aside class="filters">
-            </aside>
+    <main class="hero-section">
+        <div class="container">
+            <h1>Encontre a peça certa para seu veículo.</h1>
+            <p>Busque por numeração, modelo do veículo ou navegue por categorias.</p>
+            
+            <div class="search-box-wrapper">
+                <div class="search-tabs">
+                    <button class="tab-button active" id="tab-vehicle">Buscar por Veículo</button>
+                    <button class="tab-button" id="tab-number">Buscar por Numeração</button>
+                </div>
+                
+                <div class="search-form" id="form-vehicle">
+                    <select name="manufacturer">
+                        <option value="">Selecione a Montadora</option>
+                        <option value="vw">Volkswagen</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="gm">Chevrolet</option>
+                        <option value="honda">Honda</option>
+                    </select>
+                    <select name="model">
+                        <option value="">Selecione o Modelo</option>
+                        <option value="gol">Gol</option>
+                        <option value="civic">Civic</option>
+                    </select>
+                    <select name="year">
+                        <option value="">Selecione o Ano</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                    </select>
+                    <button type="submit" class="search-submit-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i> Buscar Peças
+                    </button>
+                </div>
 
-        <section class="products-section">
-            <div class="products-header">
-                <div>
-                    <p class="breadcrumbs">Página Inicial / Em Oferta</p>
-                    <h1>Produtos Nike com Desconto (4136)</h1>
-                </div>
-                </div>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="https://imgnike-a.akamaihd.net/768x768/029135ID.jpg" alt="Camisa Corinthians">
-                    <h3 class="product-name">Camisa Nike Corinthians II 2024/25</h3>
-                    <div class="product-price">
-                        <span class="current-price">R$ 199,49</span>
-                        <span class="original-price">R$ 349,99</span>
-                        <span class="discount">43% off</span>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="https://imgnike-a.akamaihd.net/768x768/02792951.jpg" alt="Tênis Nike Court Vision">
-                    <h3 class="product-name">Tênis Nike Court Vision Low Next Nature</h3>
-                     <div class="product-price">
-                        <span class="current-price">R$ 379,99</span>
-                        <span class="original-price">R$ 599,99</span>
-                        <span class="discount">37% off</span>
-                    </div>
+                <div class="search-form" id="form-number" style="display: none;">
+                    <input type="text" placeholder="Digite o código da peça (ex: 377.407.151)">
+                    <button type="submit" class="search-submit-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i> Buscar
+                    </button>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
 </body>
