@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsContainer = document.getElementById('results-container');
 
     // URL base da API de busca do Mercado Livre
-    const API_BASE_URL = 'https://api.mercadolibre.com/sites/MLB/search?q=';
+    const API_BASE_URL = '/api/search?query=';
 
     // Função para buscar produtos na API
     const fetchProducts = async (query) => {
