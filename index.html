@@ -1,24 +1,132 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busca de Peças</title>
+    <title>Produtos Nike com Desconto</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <main class="container">
-        <header class="header">
-            <h1>Nosso Catálogo de Peças</h1>
-            <p>Navegue pelos nossos produtos.</p>
-        </header>
 
-        <section class="results-section" id="results-container">
-            </section>
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <a href="#">Junte-se a nós</a>
+                <a href="#">Entrar</a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <a href="#" class="logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg" alt="Nike Logo">
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">Ofertas</a></li>
+                    <li><a href="#">Lançamentos</a></li>
+                    <li><a href="#">Masculino</a></li>
+                    <li><a href="#">Feminino</a></li>
+                    <li><a href="#">Infantil</a></li>
+                </ul>
+                <div class="nav-icons">
+                    <div class="search-box">
+                        <input type="search" placeholder="Buscar">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <a href="#"><i class="fa-regular fa-heart"></i></a>
+                    <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container page-content">
+        <aside class="filters">
+            <h3>Filtros</h3>
+            <div class="filter-group">
+                <h4>Gênero <i class="fa-solid fa-chevron-down"></i></h4>
+                </div>
+            <div class="filter-group">
+                <h4>Tipo de Produto <i class="fa-solid fa-chevron-down"></i></h4>
+                 </div>
+            <div class="filter-group">
+                <h4>Tamanho <i class="fa-solid fa-chevron-down"></i></h4>
+                <div class="size-grid">
+                    <button>38</button>
+                    <button>39</button>
+                    <button class="active">40</button>
+                    <button>41</button>
+                    <button>42</button>
+                    <button>43</button>
+                </div>
+            </div>
+        </aside>
+
+        <section class="products-section">
+            <div class="products-header">
+                <div>
+                    <p class="breadcrumbs">Página Inicial / Em Oferta</p>
+                    <h1>Produtos Nike com Desconto (4136)</h1>
+                </div>
+                <div class="sorting">
+                    <label for="sort">Ordenar por</label>
+                    <select id="sort">
+                        <option value="relevance">Relevância</option>
+                        <option value="price-asc">Menor Preço</option>
+                        <option value="price-desc">Maior Preço</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://imgnike-a.akamaihd.net/768x768/029135ID.jpg" alt="Camisa Corinthians">
+                    <a href="#" class="wishlist-btn"><i class="fa-regular fa-heart"></i></a>
+                    <p class="product-label">Personalize</p>
+                    <h3 class="product-name">Camisa Nike Corinthians II 2024/25 Torcedor Pro Masculina</h3>
+                    <p class="product-category">Futebol</p>
+                    <div class="product-price">
+                        <span class="current-price">R$ 199,49</span>
+                        <span class="original-price">R$ 349,99</span>
+                        <span class="discount">43% off</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i> 4.5
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://imgnike-a.akamaihd.net/768x768/02894551.jpg" alt="Camiseta Corinthians Escudo">
+                    <a href="#" class="wishlist-btn"><i class="fa-regular fa-heart"></i></a>
+                    <h3 class="product-name">Camiseta Nike Corinthians Escudo Masculina</h3>
+                    <p class="product-category">Futebol</p>
+                    <div class="product-price">
+                        <span class="current-price">R$ 80,94</span>
+                        <span class="original-price">R$ 129,99</span>
+                        <span class="discount">38% off</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i> 4.8
+                    </div>
+                </div>
+
+                <div class="product-card">
+                     <img src="https://imgnike-a.akamaihd.net/768x768/02792951.jpg" alt="Tênis Nike Court Vision">
+                     <a href="#" class="wishlist-btn"><i class="fa-regular fa-heart"></i></a>
+                    <h3 class="product-name">Tênis Nike Court Vision Low Next Nature Masculino</h3>
+                    <p class="product-category">Casual</p>
+                    <div class="product-price">
+                        <span class="current-price">R$ 379,99</span>
+                        <span class="original-price">R$ 599,99</span>
+                        <span class="discount">37% off</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i> 4.2
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-    <script src="script.js"></script>
+
 </body>
 </html>
