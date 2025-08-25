@@ -202,3 +202,29 @@ body {
         gap: 15px;
     }
 }
+/* Adicione estas novas classes ao seu style.css */
+
+.product-info {
+    width: 100%; /* Garante que a div ocupe todo o espaço do card */
+    align-items: flex-start; /* Alinha o texto à esquerda */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.product-code {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+}
+
+.product-application {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    min-height: 40px; /* Ajuda a manter o alinhamento dos botões */
+}
+
+.product-link {
+    width: 100%; /* Faz o botão ocupar toda a largura do card */
+    text-align: center; /* Centraliza o texto do botão */
+}

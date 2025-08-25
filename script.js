@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const resultsContainer = document.getElementById('results-container');
 
-    // URL base da API de busca do Mercado Livre
+    // URL base da nossa API intermediária
     const API_BASE_URL = '/api/search?query=';
 
     // Função para buscar produtos na API
@@ -30,6 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // ==================================================================
+    //  FUNÇÃO MODIFICADA ABAIXO
+    // ==================================================================
+
     // Função para renderizar os produtos na tela
     const renderProducts = (products) => {
         resultsContainer.innerHTML = ''; // Limpa os resultados anteriores
@@ -44,16 +48,34 @@ document.addEventListener('DOMContentLoaded', () => {
             const productCard = document.createElement('div');
             productCard.classList.add('product-card');
 
-            // Formata o preço para o padrão brasileiro
-            const price = product.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            // --- INÍCIO DA NOSSA INVESTIGAÇÃO ---
+            // Vamos procurar por atributos como Código e Aplicação nos dados do produto
+            // Por enquanto, vamos deixar valores padrão
+            let codigoPeca = 'N/D';
+            let aplicacao = 'N/D';
+
+            // Tenta encontrar o código da peça (Part Number ou MPN)
+            const partNumberAttribute = product.attributes.find(attr => attr.id === 'PART_NUMBER' || attr.id === 'MPN');
+            if (partNumberAttribute) {
+                codigoPeca = partNumberAttribute.value_name;
+            }
+
+            // Tenta encontrar a aplicação (exemplo, não garantido)
+            const applicationAttribute = product.attributes.find(attr => attr.id === 'APPLICATIONS');
+            if (applicationAttribute) {
+                aplicacao = applicationAttribute.value_name;
+            }
+            // --- FIM DA NOSSA INVESTIGAÇÃO ---
+
 
             // Adiciona o HTML do card com as informações do produto
             productCard.innerHTML = `
                 <img src="${product.thumbnail}" alt="${product.title}" class="product-image">
                 <div class="product-info">
+                    <p class="product-code">Cód. ${codigoPeca}</p>
                     <h3 class="product-title">${product.title}</h3>
-                    <p class="product-price">${price}</p>
-                    <a href="${product.permalink}" target="_blank" class="product-link">Ver no Mercado Livre</a>
+                    <p class="product-application"><b>Aplicação:</b><br>${aplicacao}</p>
+                    <a href="${product.permalink}" target="_blank" class="product-link">PARA VER O PREÇO</a>
                 </div>
             `;
             
@@ -61,6 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsContainer.appendChild(productCard);
         });
     };
+    
+    // ==================================================================
+    //  FIM DA FUNÇÃO MODIFICADA
+    // ==================================================================
+
 
     // Adiciona um "ouvinte" ao formulário para o evento de submit
     searchForm.addEventListener('submit', async (e) => {
