@@ -4,39 +4,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const resultsContainer = document.getElementById('results-container');
 
-    // URL base da nossa API intermediária
-    const API_BASE_URL = '/api/search?query=';
+    // --- LÓGICA DA API DESATIVADA TEMPORARIAMENTE ---
+    // const API_BASE_URL = '/api/search?query=';
+    // const fetchProducts = async (query) => { ... };
 
-    // Função para buscar produtos na API
-    const fetchProducts = async (query) => {
-        // Limpa a área de resultados e exibe uma mensagem de carregamento
-        resultsContainer.innerHTML = '<p class="loading-message">Buscando peças...</p>';
+    /**
+     * Função para buscar produtos na nossa base de dados fictícia (database.js)
+     * @param {string} query - O termo que o utilizador digitou para buscar.
+     * @returns {Array} - Uma lista de produtos que correspondem à busca.
+     */
+    const searchLocalProducts = (query) => {
+        const lowerCaseQuery = query.toLowerCase();
 
-        try {
-            // Constrói a URL de busca
-            const response = await fetch(`${API_BASE_URL}${encodeURIComponent(query)}`);
+        // Filtra o array 'produtosFicticios' (que vem do database.js)
+        const resultados = produtosFicticios.filter(product => {
+            // Verifica se o título ou o código da peça contém o texto da busca
+            const titulo = product.title.toLowerCase();
+            const codigo = product.attributes.find(attr => attr.id === 'PART_NUMBER')?.value_name.toLowerCase() || '';
 
-            // Verifica se a resposta foi bem-sucedida
-            if (!response.ok) {
-                throw new Error('Erro ao buscar na API do Mercado Livre.');
-            }
+            return titulo.includes(lowerCaseQuery) || codigo.includes(lowerCaseQuery);
+        });
 
-            const data = await response.json();
-            return data.results; // Retorna a lista de produtos
-        } catch (error) {
-            console.error('Erro:', error);
-            resultsContainer.innerHTML = '<p class="error-message">Desculpe, algo deu errado. Tente novamente mais tarde.</p>';
-            return [];
-        }
+        return resultados;
     };
 
-    // ==================================================================
-    //  FUNÇÃO MODIFICADA ABAIXO
-    // ==================================================================
-
-    // Função para renderizar os produtos na tela
+    // Função para renderizar os produtos na tela (esta continua igual)
     const renderProducts = (products) => {
-        resultsContainer.innerHTML = ''; // Limpa os resultados anteriores
+        resultsContainer.innerHTML = ''; 
 
         if (products.length === 0) {
             resultsContainer.innerHTML = '<p class="no-results">Nenhum resultado encontrado. Tente uma busca diferente.</p>';
@@ -44,31 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         products.forEach(product => {
-            // Cria um card para cada produto
             const productCard = document.createElement('div');
             productCard.classList.add('product-card');
 
-            // --- INÍCIO DA NOSSA INVESTIGAÇÃO ---
-            // Vamos procurar por atributos como Código e Aplicação nos dados do produto
-            // Por enquanto, vamos deixar valores padrão
             let codigoPeca = 'N/D';
             let aplicacao = 'N/D';
 
-            // Tenta encontrar o código da peça (Part Number ou MPN)
             const partNumberAttribute = product.attributes.find(attr => attr.id === 'PART_NUMBER' || attr.id === 'MPN');
             if (partNumberAttribute) {
                 codigoPeca = partNumberAttribute.value_name;
             }
 
-            // Tenta encontrar a aplicação (exemplo, não garantido)
             const applicationAttribute = product.attributes.find(attr => attr.id === 'APPLICATIONS');
             if (applicationAttribute) {
                 aplicacao = applicationAttribute.value_name;
             }
-            // --- FIM DA NOSSA INVESTIGAÇÃO ---
 
-
-            // Adiciona o HTML do card com as informações do produto
             productCard.innerHTML = `
                 <img src="${product.thumbnail}" alt="${product.title}" class="product-image">
                 <div class="product-info">
@@ -79,26 +64,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             
-            // Adiciona o card ao contêiner de resultados
             resultsContainer.appendChild(productCard);
         });
     };
-    
-    // ==================================================================
-    //  FIM DA FUNÇÃO MODIFICADA
-    // ==================================================================
-
 
     // Adiciona um "ouvinte" ao formulário para o evento de submit
-    searchForm.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Impede o envio do formulário (para não recarregar a página)
+    searchForm.addEventListener('submit', (e) => {
+        e.preventDefault(); 
 
         const query = searchInput.value.trim();
         if (query) {
-            const products = await fetchProducts(query);
-            renderProducts(products);
+            // Agora chamamos a nossa função de busca local
+            const products = searchLocalProducts(query);
+            renderProducts(products); // Renderizamos o resultado
         } else {
-            resultsContainer.innerHTML = '<p class="no-results">Por favor, digite algo para buscar.</p>';
+            // Se a busca for vazia, mostra todos os produtos
+            renderProducts(produtosFicticios);
         }
     });
+
+    // Mostra todos os produtos fictícios assim que a página carrega
+    renderProducts(produtosFicticios);
 });
