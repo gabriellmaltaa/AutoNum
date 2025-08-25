@@ -12,15 +12,14 @@
     <header>
         <nav class="main-nav">
             <div class="container">
-                <a href="index.html" class="logo">
-                    <a href="index.html" class="logo">Auto<strong>Num</strong></a>
-                </a>
-                    <ul class="nav-menu">
-                        <li><a href="pecas-carro.html">Peças de Carro</a></li>
-                        <li><a href="pecas-moto.html">Peças de Moto</a></li>
-                        <li><a href="oleos-fluidos.html">Óleos e Fluidos</a></li>
-                        <li><a href="ofertas.html">Ofertas</a></li>
-                    </ul>
+                <a href="index.html" class="logo">Auto<strong>Num</strong></a>
+                
+                <ul class="nav-menu">
+                    <li><a href="pecas-carro.html">Peças de Carro</a></li>
+                    <li><a href="pecas-moto.html">Peças de Moto</a></li>
+                    <li><a href="oleos-fluidos.html">Óleos e Fluidos</a></li>
+                    <li><a href="ofertas.html">Ofertas</a></li>
+                </ul>
                 <div class="nav-icons">
                     <a href="#"><i class="fa-regular fa-user"></i> <span>Minha Conta</span></a>
                     <a href="#" id="cart-icon-container">
@@ -74,55 +73,34 @@
     </main>
 
     <section class="categories-section">
-        <div class="container">
-            <h2>Navegue por Categorias</h2>
-            <div class="category-grid">
-                <a href="#" class="category-card">
-                    <img src="img/icon-carro.png" alt="Ícone Carro">
-                    <h3>Peças de Carro</h3>
-                </a>
-                <a href="#" class="category-card">
-                    <img src="img/icon-moto.png" alt="Ícone Moto">
-                    <h3>Peças de Moto</h3>
-                </a>
-                <a href="#" class="category-card">
-                    <img src="img/icon-oleo.png" alt="Ícone Óleo">
-                    <h3>Óleos e Fluidos</h3>
-                </a>
-                <a href="#" class="category-card">
-                    <img src="img/icon-oferta.png" alt="Ícone Oferta">
-                    <h3>Ofertas Especiais</h3>
-                </a>
-            </div>
-        </div>
-    </section>
+         </section>
 
     <section class="featured-products">
         <div class="container">
             <h2>Peças em Destaque</h2>
             <div class="products-grid">
-                <div class="product-card">
+                <div class="product-card" data-name="Amortecedor Dianteiro" data-price="259.90" data-img="https://via.placeholder.com/250">
                     <img src="https://via.placeholder.com/250" alt="Imagem da Peça">
                     <h4>Amortecedor Dianteiro</h4>
                     <p class="product-code">Cód: 377.407.151</p>
                     <p class="product-price">R$ 259,90</p>
                     <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-name="Pastilha de Freio" data-price="89.90" data-img="https://via.placeholder.com/250">
                     <img src="https://via.placeholder.com/250" alt="Imagem da Peça">
                     <h4>Pastilha de Freio</h4>
                     <p class="product-code">Cód: PD-123.ABC</p>
                     <p class="product-price">R$ 89,90</p>
                     <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-name="Filtro de Ar do Motor" data-price="45.50" data-img="https://via.placeholder.com/250">
                     <img src="https://via.placeholder.com/250" alt="Imagem da Peça">
                     <h4>Filtro de Ar do Motor</h4>
                     <p class="product-code">Cód: FA-456.XYZ</p>
                     <p class="product-price">R$ 45,50</p>
                     <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                 </div>
-                <div class="product-card">
+                <div class="product-card" data-name="Vela de Ignição" data-price="22.00" data-img="https://via.placeholder.com/250">
                     <img src="https://via.placeholder.com/250" alt="Imagem da Peça">
                     <h4>Vela de Ignição</h4>
                     <p class="product-code">Cód: BKR6E-11</p>
@@ -137,7 +115,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <img src="img/logo-autonum.png" alt="Logo AutoNum" class="footer-logo">
+                    <a href="index.html" class="logo">Auto<strong>Num</strong></a>
                     <p>A forma mais inteligente de encontrar a peça certa para o seu veículo. Busque por número e acerte na primeira tentativa.</p>
                 </div>
                 <div class="footer-links">
@@ -162,25 +140,24 @@
         </div>
     </footer>
 
-    <script>
-        const tabVehicle = document.getElementById('tab-vehicle');
-        const tabNumber = document.getElementById('tab-number');
-        const formVehicle = document.getElementById('form-vehicle');
-        const formNumber = document.getElementById('form-number');
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-modal-content">
+            <div class="cart-modal-header">
+                <h2>Meu Carrinho</h2>
+                <button id="close-cart-btn" class="close-cart-btn">&times;</button>
+            </div>
+            <div id="cart-items-container" class="cart-modal-body"></div>
+            <div class="cart-modal-footer">
+                <div class="cart-total">
+                    <strong>Total:</strong>
+                    <span id="cart-total-price">R$ 0,00</span>
+                </div>
+                <button class="checkout-btn">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
 
-        tabVehicle.addEventListener('click', () => {
-            tabVehicle.classList.add('active');
-            tabNumber.classList.remove('active');
-            formVehicle.style.display = 'flex';
-            formNumber.style.display = 'none';
-        });
-
-        tabNumber.addEventListener('click', () => {
-            tabNumber.classList.add('active');
-            tabVehicle.classList.remove('active');
-            formNumber.style.display = 'flex';
-            formVehicle.style.display = 'none';
-        });
-    </script>
 </body>
 </html>

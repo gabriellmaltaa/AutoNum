@@ -332,7 +332,17 @@ footer {
     padding: 20px 0;
     font-size: 0.9rem;
 }
+/* ---- AJUSTE NO RODAPÉ ---- */
+.footer-about .logo {
+    color: var(--white); /* Deixa o logo branco */
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    display: inline-block; /* Necessário para a margem funcionar bem */
+}
 
+.footer-about .logo strong {
+    color: var(--primary-blue); /* Mantém o "Num" azul */
+}
 
 /* ---- RESPONSIVIDADE ---- */
 @media (max-width: 992px) {

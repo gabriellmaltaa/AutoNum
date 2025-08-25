@@ -1,7 +1,29 @@
-// Aguarda o documento HTML ser completamente carregado
+// Aguarda o documento HTML ser completamente carregado para executar o script
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Seleciona todos os botões "Adicionar ao Carrinho"
+    // --- FUNCIONALIDADE DAS ABAS DE BUSCA ---
+    const tabVehicle = document.getElementById('tab-vehicle');
+    const tabNumber = document.getElementById('tab-number');
+    const formVehicle = document.getElementById('form-vehicle');
+    const formNumber = document.getElementById('form-number');
+
+    if (tabVehicle && tabNumber) { // Verifica se os elementos existem na página atual
+        tabVehicle.addEventListener('click', () => {
+            tabVehicle.classList.add('active');
+            tabNumber.classList.remove('active');
+            formVehicle.style.display = 'flex';
+            formNumber.style.display = 'none';
+        });
+
+        tabNumber.addEventListener('click', () => {
+            tabNumber.classList.add('active');
+            tabVehicle.classList.remove('active');
+            formNumber.style.display = 'flex';
+            formVehicle.style.display = 'none';
+        });
+    }
+
+    // --- FUNCIONALIDADE DO CARRINHO DE COMPRAS ---
     const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
     const cartIconContainer = document.getElementById('cart-icon-container');
     const cartModal = document.getElementById('cart-modal');
@@ -22,9 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cartItemsContainer.innerHTML = '<p>Seu carrinho está vazio.</p>';
             cartCountSpan.classList.remove('visible');
         } else {
-            // Adiciona a classe 'visible' para mostrar o contador
             cartCountSpan.classList.add('visible');
-            
             cart.forEach((item, index) => {
                 const cartItem = document.createElement('div');
                 cartItem.className = 'cart-item';
@@ -40,14 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // Atualiza a contagem de itens no ícone
         cartCountSpan.textContent = cart.length;
 
-        // Calcula e atualiza o preço total
         const totalPrice = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
         cartTotalPriceSpan.textContent = totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-        // Adiciona eventos aos botões de remover
         addRemoveListeners();
     };
 
@@ -59,24 +76,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Função para remover um item do carrinho
     const removeFromCart = (index) => {
-        cart.splice(index, 1); // Remove o item do array pelo seu índice
+        cart.splice(index, 1);
         updateCartUI();
     };
 
-    // Adiciona o evento de clique para cada botão
+    // Adiciona o evento de clique para cada botão "Adicionar ao Carrinho"
     addToCartButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             const productCard = event.target.closest('.product-card');
-            
             const product = {
                 name: productCard.dataset.name,
                 price: productCard.dataset.price,
                 img: productCard.dataset.img
             };
-
             addToCart(product);
-            
-            // Opcional: mostrar um alerta ou uma notificação mais sofisticada
             alert(`${product.name} foi adicionado ao carrinho!`);
         });
     });
@@ -92,23 +105,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Eventos para abrir e fechar o modal
-    cartIconContainer.addEventListener('click', (event) => {
-        event.preventDefault(); // Previne o link de navegar
-        cartModal.classList.add('show');
-    });
+    // Eventos para abrir e fechar o modal do carrinho
+    if (cartIconContainer) { // Verifica se o ícone do carrinho existe
+        cartIconContainer.addEventListener('click', (event) => {
+            event.preventDefault();
+            cartModal.classList.add('show');
+        });
 
-    closeCartBtn.addEventListener('click', () => {
-        cartModal.classList.remove('show');
-    });
-
-    // Fecha o modal se clicar fora do conteúdo
-    cartModal.addEventListener('click', (event) => {
-        if (event.target === cartModal) {
+        closeCartBtn.addEventListener('click', () => {
             cartModal.classList.remove('show');
-        }
-    });
+        });
 
-    // Inicia a UI do carrinho pela primeira vez
+        cartModal.addEventListener('click', (event) => {
+            if (event.target === cartModal) {
+                cartModal.classList.remove('show');
+            }
+        });
+    }
+
+    // Inicia a UI do carrinho pela primeira vez ao carregar a página
     updateCartUI();
 });
