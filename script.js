@@ -4,45 +4,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const resultsContainer = document.getElementById('results-container');
 
-    // ==================================================================
-    //  MUDANÇA PRINCIPAL: AGORA APONTAMOS DIRETAMENTE PARA O MERCADO LIVRE
-    // ==================================================================
-    const API_MERCADO_LIVRE_URL = 'https://api.mercadolibre.com/sites/MLB/search?q=';
+    const API_BASE_URL = '/api/search?query=';
 
-    /**
-     * Função para buscar produtos DIRETAMENTE na API do Mercado Livre
-     */
     const fetchProducts = async (query) => {
-        resultsContainer.innerHTML = '<p class="loading-message">Buscando direto no Mercado Livre...</p>';
+        resultsContainer.innerHTML = '<p class="loading-message">Buscando peças de verdade...</p>';
 
         try {
-            // A chamada agora é para a URL completa do Mercado Livre
-            const response = await fetch(`${API_MERCADO_LIVRE_URL}${encodeURIComponent(query)}`);
-            
+            const response = await fetch(`${API_BASE_URL}${encodeURIComponent(query)}`);
             if (!response.ok) {
-                // Se a resposta não for OK, pode ser um erro de rede ou um bloqueio CORS
-                throw new Error('A resposta da rede não foi bem-sucedida. Verifique a consola por erros de CORS.');
+                throw new Error('A resposta da rede não foi bem-sucedida.');
             }
             const data = await response.json();
-            console.log('Dados recebidos da API:', data.results);
             return data.results;
         } catch (error) {
             console.error('Erro ao buscar produtos:', error);
-            // Mensagem de erro mais específica para ajudar a depurar o CORS
-            resultsContainer.innerHTML = `<p class="error-message">
-                Desculpe, algo deu errado na busca. <br>
-                Abra a consola (F12) e verifique se há um erro relacionado a 'CORS'.
-            </p>`;
+            resultsContainer.innerHTML = '<p class="error-message">Desculpe, algo deu errado na busca. Tente novamente.</p>';
             return [];
         }
     };
-
-    /**
-     * Função para renderizar os produtos na tela (sem alterações)
-     */
+    
+    // (O resto do ficheiro continua igual, com a função renderProducts e o Event Listener)
     const renderProducts = (products) => {
         resultsContainer.innerHTML = ''; 
-        if (products.length === 0) {
+        if (!products || products.length === 0) {
             resultsContainer.innerHTML = '<p class="no-results">Nenhum resultado encontrado.</p>';
             return;
         }
@@ -70,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Event listener do formulário (sem alterações na sua lógica principal)
     searchForm.addEventListener('submit', async (e) => {
         e.preventDefault(); 
         const query = searchInput.value.trim();
