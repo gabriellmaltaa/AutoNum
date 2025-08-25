@@ -12,16 +12,18 @@
     <header>
         <nav class="main-nav">
             <div class="container">
-                <a href="index.html" class="logo">Auto<strong>Num</strong></a>
-                <ul class="nav-menu">
-                    <li><a href="#">Peças de Carro</a></li>
-                    <li><a href="#">Peças de Moto</a></li>
-                    <li><a href="#">Óleos e Fluidos</a></li>
-                    <li><a href="#">Ofertas</a></li>
-                </ul>
+                <a href="index.html" class="logo">
+                    <img src="img/logo-autonum.png" alt="Logo AutoNum">
+                </a>
+                    <ul class="nav-menu">
+                        <li><a href="pecas-carro.html">Peças de Carro</a></li>
+                        <li><a href="pecas-moto.html">Peças de Moto</a></li>
+                        <li><a href="oleos-fluidos.html">Óleos e Fluidos</a></li>
+                        <li><a href="ofertas.html">Ofertas</a></li>
+                    </ul>
                 <div class="nav-icons">
-                    <a href="#"><i class="fa-regular fa-user"></i> Minha Conta</a>
-                    <a href="#"><i class="fa-solid fa-bag-shopping"></i> Carrinho</a>
+                    <a href="#"><i class="fa-regular fa-user"></i> <span>Minha Conta</span></a>
+                    <a href="#"><i class="fa-solid fa-bag-shopping"></i> <span>Carrinho</span></a>
                 </div>
             </div>
         </nav>
@@ -48,13 +50,9 @@
                     </select>
                     <select name="model">
                         <option value="">Selecione o Modelo</option>
-                        <option value="gol">Gol</option>
-                        <option value="civic">Civic</option>
                     </select>
                     <select name="year">
                         <option value="">Selecione o Ano</option>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
                     </select>
                     <button type="submit" class="search-submit-btn">
                         <i class="fa-solid fa-magnifying-glass"></i> Buscar Peças
@@ -71,5 +69,114 @@
         </div>
     </main>
 
+    <section class="categories-section">
+        <div class="container">
+            <h2>Navegue por Categorias</h2>
+            <div class="category-grid">
+                <a href="#" class="category-card">
+                    <img src="img/icon-carro.png" alt="Ícone Carro">
+                    <h3>Peças de Carro</h3>
+                </a>
+                <a href="#" class="category-card">
+                    <img src="img/icon-moto.png" alt="Ícone Moto">
+                    <h3>Peças de Moto</h3>
+                </a>
+                <a href="#" class="category-card">
+                    <img src="img/icon-oleo.png" alt="Ícone Óleo">
+                    <h3>Óleos e Fluidos</h3>
+                </a>
+                <a href="#" class="category-card">
+                    <img src="img/icon-oferta.png" alt="Ícone Oferta">
+                    <h3>Ofertas Especiais</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-products">
+        <div class="container">
+            <h2>Peças em Destaque</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250" alt="Imagem da Peça">
+                    <h4>Amortecedor Dianteiro</h4>
+                    <p class="product-code">Cód: 377.407.151</p>
+                    <p class="product-price">R$ 259,90</p>
+                    <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250" alt="Imagem da Peça">
+                    <h4>Pastilha de Freio</h4>
+                    <p class="product-code">Cód: PD-123.ABC</p>
+                    <p class="product-price">R$ 89,90</p>
+                    <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250" alt="Imagem da Peça">
+                    <h4>Filtro de Ar do Motor</h4>
+                    <p class="product-code">Cód: FA-456.XYZ</p>
+                    <p class="product-price">R$ 45,50</p>
+                    <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/250" alt="Imagem da Peça">
+                    <h4>Vela de Ignição</h4>
+                    <p class="product-code">Cód: BKR6E-11</p>
+                    <p class="product-price">R$ 22,00</p>
+                    <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <img src="img/logo-autonum.png" alt="Logo AutoNum" class="footer-logo">
+                    <p>A forma mais inteligente de encontrar a peça certa para o seu veículo. Busque por número e acerte na primeira tentativa.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Siga-nos</h4>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AutoNum. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const tabVehicle = document.getElementById('tab-vehicle');
+        const tabNumber = document.getElementById('tab-number');
+        const formVehicle = document.getElementById('form-vehicle');
+        const formNumber = document.getElementById('form-number');
+
+        tabVehicle.addEventListener('click', () => {
+            tabVehicle.classList.add('active');
+            tabNumber.classList.remove('active');
+            formVehicle.style.display = 'flex';
+            formNumber.style.display = 'none';
+        });
+
+        tabNumber.addEventListener('click', () => {
+            tabNumber.classList.add('active');
+            tabVehicle.classList.remove('active');
+            formNumber.style.display = 'flex';
+            formVehicle.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
