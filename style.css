@@ -351,3 +351,30 @@ footer {
         display: none; /* Esconde o texto dos ícones em telas pequenas */
     }
 }
+/* ---- ESTILOS PARA PÁGINAS INTERNAS ---- */
+
+.page-section {
+    padding: 40px 0 60px 0; /* Espaçamento superior e inferior */
+}
+
+.page-title {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    border-bottom: 3px solid var(--primary-blue);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.page-description {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin-bottom: 40px;
+}
+
+/* Ajuste no preço para ofertas */
+.product-price s {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-right: 10px;
+    font-weight: normal;
+}
