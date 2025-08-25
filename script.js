@@ -1,67 +1,48 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    const searchForm = document.getElementById('search-form');
-    const searchInput = document.getElementById('search-input');
     const resultsContainer = document.getElementById('results-container');
+    // A URL do nosso próprio backend que criámos!
+    const API_URL = 'http://localhost:3000/api/produtos';
 
-    const API_BASE_URL = '/api/search?query=';
-
-    const fetchProducts = async (query) => {
-        resultsContainer.innerHTML = '<p class="loading-message">Buscando peças de verdade...</p>';
-
+    // Função para buscar os produtos da nossa API
+    const fetchProducts = async () => {
+        resultsContainer.innerHTML = '<p class="loading-message">A carregar produtos do nosso banco de dados...</p>';
         try {
-            const response = await fetch(`${API_BASE_URL}${encodeURIComponent(query)}`);
+            const response = await fetch(API_URL);
             if (!response.ok) {
-                throw new Error('A resposta da rede não foi bem-sucedida.');
+                throw new Error('Não foi possível conectar ao servidor local.');
             }
-            const data = await response.json();
-            return data.results;
+            const products = await response.json();
+            renderProducts(products);
         } catch (error) {
             console.error('Erro ao buscar produtos:', error);
-            resultsContainer.innerHTML = '<p class="error-message">Desculpe, algo deu errado na busca. Tente novamente.</p>';
-            return [];
+            resultsContainer.innerHTML = '<p class="error-message">Erro ao carregar produtos. Verifique se o servidor (`server.js`) está a ser executado.</p>';
         }
     };
-    
-    // (O resto do ficheiro continua igual, com a função renderProducts e o Event Listener)
+
+    // Função para renderizar os produtos na tela
     const renderProducts = (products) => {
-        resultsContainer.innerHTML = ''; 
+        resultsContainer.innerHTML = '';
         if (!products || products.length === 0) {
-            resultsContainer.innerHTML = '<p class="no-results">Nenhum resultado encontrado.</p>';
+            resultsContainer.innerHTML = '<p class="no-results">Nenhum produto encontrado.</p>';
             return;
         }
         products.forEach(product => {
             const productCard = document.createElement('div');
             productCard.classList.add('product-card');
-            let codigoPeca = 'N/D';
-            if (product.attributes) {
-                const partNumberAttribute = product.attributes.find(attr => attr.id === 'PART_NUMBER' || attr.id === 'MPN');
-                if (partNumberAttribute) {
-                    codigoPeca = partNumberAttribute.value_name;
-                }
-            }
-            const highResImage = product.thumbnail.replace('-I.jpg', '-O.jpg');
+
             productCard.innerHTML = `
-                <img src="${highResImage}" alt="${product.title}" class="product-image" onerror="this.onerror=null;this.src='${product.thumbnail}';">
+                <img src="${product.imagem_url}" alt="${product.nome}" class="product-image">
                 <div class="product-info">
-                    <p class="product-code">Cód. ${codigoPeca}</p>
-                    <h3 class="product-title">${product.title}</h3>
-                    <p class="product-application"><b>Aplicação:</b><br>N/D</p>
-                    <a href="${product.permalink}" target="_blank" class="product-link">PARA VER O PREÇO</a>
+                    <p class="product-code">Cód. ${product.codigo_peca}</p>
+                    <h3 class="product-title">${product.nome}</h3>
+                    <p class="product-application"><b>Aplicação:</b><br>${product.aplicacao}</p>
+                    <a href="#" target="_blank" class="product-link">VER DETALHES</a>
                 </div>
             `;
             resultsContainer.appendChild(productCard);
         });
     };
 
-    searchForm.addEventListener('submit', async (e) => {
-        e.preventDefault(); 
-        const query = searchInput.value.trim();
-        if (query) {
-            const products = await fetchProducts(query);
-            renderProducts(products);
-        } else {
-            resultsContainer.innerHTML = '<p class="no-results">Por favor, digite algo para buscar.</p>';
-        }
-    });
+    // Busca os produtos assim que a página estiver pronta
+    fetchProducts();
 });
