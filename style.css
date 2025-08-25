@@ -52,9 +52,25 @@ header {
     height: 70px;
 }
 
-.logo img {
-    height: 40px; /* Ajuste a altura do seu logo */
+/* Adicione este código ao seu style.css */
+
+.logo {
+    font-size: 1.8rem; /* Tamanho da fonte do logo */
+    font-weight: bold;
+    color: var(--text-color);
+    text-decoration: none;
 }
+
+.logo strong {
+    color: var(--primary-blue); /* Cor azul para a parte "Num" */
+    font-weight: bold;
+}
+
+/* Você pode remover ou comentar a regra antiga se quiser */
+/* .logo img {
+    height: 40px; 
+}
+*/
 
 .nav-menu {
     display: flex;
