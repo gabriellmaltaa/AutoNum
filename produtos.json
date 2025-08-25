@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "nome": "Pastilha de Freio Dianteira",
+    "marca": "Bosch",
+    "codigo": "BB245",
+    "preco": 89.90,
+    "compatibilidade": "Compatível com seu veículo"
+  },
+  {
+    "id": 2,
+    "nome": "Jogo de Velas de Ignição",
+    "marca": "NGK",
+    "codigo": "BKR7E",
+    "preco": 119.90,
+    "compatibilidade": "Compatível com seu veículo"
+  }
+]

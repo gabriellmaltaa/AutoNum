@@ -148,3 +148,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateCartUI(); // Inicia a UI
 });
+import { put } from '@vercel/blob';
+import fs from 'fs';
+import path from 'path';
+
+// Lê o conteúdo do arquivo produtos.json
+const filePath = path.join(process.cwd(), 'produtos.json');
+const fileBuffer = fs.readFileSync(filePath);
+
+// Faz o upload do arquivo JSON para o Vercel Blob
+const blob = await put('dados/produtos.json', fileBuffer, {
+  access: 'public',
+  // Adiciona o tipo de conteúdo para o navegador entender que é um JSON
+  contentType: 'application/json' 
+});
+
+console.log('Arquivo JSON enviado! URL:', blob.url);
