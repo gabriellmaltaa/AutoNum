@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const resultsContainer = document.getElementById('results-container');
-    // A URL do nosso próprio backend que criámos!
     const API_URL = 'http://localhost:3000/api/produtos';
 
-    // Função para buscar os produtos da nossa API
     const fetchProducts = async () => {
         resultsContainer.innerHTML = '<p class="loading-message">A carregar produtos do nosso banco de dados...</p>';
         try {
@@ -15,11 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
             renderProducts(products);
         } catch (error) {
             console.error('Erro ao buscar produtos:', error);
-            resultsContainer.innerHTML = '<p class="error-message">Erro ao carregar produtos. Verifique se o servidor (`server.js`) está a ser executado.</p>';
+            resultsContainer.innerHTML = '<p class="error-message">Erro ao carregar produtos. Verifique se o servidor (`server.js`) está a ser executado no terminal.</p>';
         }
     };
 
-    // Função para renderizar os produtos na tela
     const renderProducts = (products) => {
         resultsContainer.innerHTML = '';
         if (!products || products.length === 0) {
@@ -30,19 +27,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const productCard = document.createElement('div');
             productCard.classList.add('product-card');
 
+            // Formata o preço para a moeda brasileira
+            const price = product.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
             productCard.innerHTML = `
                 <img src="${product.imagem_url}" alt="${product.nome}" class="product-image">
                 <div class="product-info">
                     <p class="product-code">Cód. ${product.codigo_peca}</p>
                     <h3 class="product-title">${product.nome}</h3>
-                    <p class="product-application"><b>Aplicação:</b><br>${product.aplicacao}</p>
-                    <a href="#" target="_blank" class="product-link">VER DETALHES</a>
+                    <p class="product-application">${product.aplicacao}</p>
+                    <a href="#" class="product-link">${price}</a>
                 </div>
             `;
             resultsContainer.appendChild(productCard);
         });
     };
 
-    // Busca os produtos assim que a página estiver pronta
     fetchProducts();
 });
